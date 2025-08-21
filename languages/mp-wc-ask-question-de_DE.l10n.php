@@ -1,2 +1,0 @@
-<?php
-return ['project-id-version'=>'MediaPons Woocommerce Ask Question','report-msgid-bugs-to'=>'','pot-creation-date'=>'2025-08-21 09:47+0000','po-revision-date'=>'2025-08-21 09:49+0000','last-translator'=>'','language-team'=>'German','language'=>'de_DE','plural-forms'=>'nplurals=2; plural=n != 1;','mime-version'=>'1.0','content-type'=>'text/plain; charset=UTF-8','content-transfer-encoding'=>'8bit','x-generator'=>'Loco https://localise.biz/','x-loco-version'=>'2.8.0; wp-6.8.2; php-8.2.28','x-domain'=>'mp-wc-ask-question','messages'=>['Add Question'=>'Frage hinzufügen']];

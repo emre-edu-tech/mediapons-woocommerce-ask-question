@@ -1,0 +1,25 @@
+# WordPress Plugin Ignore Rules
+
+# Node - Build stuff
+node_modules/
+vendor/
+
+# Operating System Specific
+.DS_Store
+Thumbs.db
+
+# Poedit or translation caches
+*.po~
+*.mo~
+*.pot~
+
+# Exclude JSON translation caches
+languages/*.json
+
+# Keep only necessary language files
+!languages/*.pot
+!languages/*.po
+!languages/*.mo
+
+# Non-standard localization exports
+languages/*.l10n.php
