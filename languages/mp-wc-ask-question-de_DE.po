@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: MediaPons Woocommerce Ask Question\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-21 09:47+0000\n"
-"PO-Revision-Date: 2025-08-21 14:13+0000\n"
+"PO-Revision-Date: 2025-08-22 07:24+0000\n"
 "Last-Translator: \n"
-"Language-Team: Deutsch\n"
+"Language-Team: German\n"
 "Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
@@ -23,17 +23,60 @@ msgstr "Frage hinzufügen"
 msgid "An error occured. Please try again later."
 msgstr "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut."
 
+#: includes/class-mp-wc-ask-question-frontend.php:23
+msgid "Ask a Question"
+msgstr "Frage stellen"
+
+#: includes/class-mp-wc-ask-question-frontend.php:48
+msgid "Ask a Question about Product"
+msgstr "Frage zum Produkt stellen"
+
+#: includes/class-mp-wc-ask-question-frontend.php:182
+msgid "Best regards"
+msgstr "Mit freundlichen Grüßen"
+
+#: includes/class-mp-wc-ask-question-frontend.php:47
+msgid "Close"
+msgstr "Schließen"
+
 #. Description of the plugin
 msgid "Custom Woocommerce Ask Question Form for Product"
 msgstr "Individuelles WooCommerce-Formular für Produktanfragen"
+
+#: includes/class-mp-wc-ask-question-frontend.php:132
+#: includes/class-mp-wc-ask-question-frontend.php:166
+msgid "Customer Name:"
+msgstr "Kundenname:"
+
+#: includes/class-mp-wc-ask-question-frontend.php:161
+#, php-format
+msgid "Dear %s"
+msgstr "Sehr geehrte(r) %s"
 
 #: includes/class-mp-wc-ask-question-cpt.php:20
 msgid "Edit Question"
 msgstr "Frage ändern"
 
+#: includes/class-mp-wc-ask-question-frontend.php:136
+msgid "Email"
+msgstr "E-Mail"
+
+#: includes/class-mp-wc-ask-question-frontend.php:170
+msgid "Email:"
+msgstr "E-Mail:"
+
 #: includes/class-mp-wc-ask-question-admin.php:29
 msgid "Go to Product Details"
 msgstr "Zu den Produktdetails"
+
+#: includes/class-mp-wc-ask-question-frontend.php:160
+#, php-format
+msgid "Hello from %s"
+msgstr "Hallo von %s"
+
+#: includes/class-mp-wc-ask-question-frontend.php:163
+msgid "Here are the details you sent us:"
+msgstr "Hier sind die Angaben, die Sie uns übermittelt haben:"
 
 #. URI of the plugin
 #. Author URI of the plugin
@@ -48,9 +91,23 @@ msgstr ""
 msgid "MediaPons Woocommerce Ask Question"
 msgstr ""
 
+#: includes/class-mp-wc-ask-question-frontend.php:144
+#: includes/class-mp-wc-ask-question-frontend.php:178
+msgid "Message:"
+msgstr "Nachricht:"
+
+#: includes/class-mp-wc-ask-question-frontend.php:129
+msgid "New Product Question"
+msgstr "Neue Produktfrage"
+
+#: includes/class-mp-wc-ask-question-frontend.php:95
 #: includes/class-mp-wc-ask-question-enqueue.php:25
 msgid "Please fill all fields"
 msgstr "Bitte alle Felder ausfüllen"
+
+#: includes/class-mp-wc-ask-question-frontend.php:55
+msgid "Product"
+msgstr "Produkt"
 
 #: includes/class-mp-wc-ask-question-admin.php:26
 msgid "Product Name"
@@ -68,10 +125,21 @@ msgstr "Produktfrage"
 msgid "Product Questions"
 msgstr "Fragen zum Produkt"
 
+#: includes/class-mp-wc-ask-question-frontend.php:140
+#: includes/class-mp-wc-ask-question-frontend.php:174
+msgid "Product:"
+msgstr "Produkt:"
+
 #: includes/class-mp-wc-ask-question-admin.php:15
 msgid "Question Details"
 msgstr "Details zur Frage"
 
+#: includes/class-mp-wc-ask-question-frontend.php:105
+#: includes/class-mp-wc-ask-question-frontend.php:125
+msgid "Question for "
+msgstr "Frage zu "
+
+#: includes/class-mp-wc-ask-question-frontend.php:75
 #: includes/class-mp-wc-ask-question-enqueue.php:23
 msgid "Send Question"
 msgstr "Frage senden"
@@ -88,6 +156,32 @@ msgstr "Absendername"
 msgid "Sending..."
 msgstr "Wird gesendet…"
 
+#: includes/class-mp-wc-ask-question-frontend.php:162
+msgid ""
+"Thank you for reaching out to us! We have received your question and will "
+"get back to you as soon as possible."
+msgstr ""
+"Vielen Dank für Ihre Nachricht! Wir haben Ihre Frage erhalten und melden uns "
+"schnellstmöglich bei Ihnen."
+
+#: includes/class-mp-wc-ask-question-frontend.php:156
+#, php-format
+msgid "We received your question about %s"
+msgstr "Ihre Frage zu %s ist bei uns eingegangen"
+
+#: includes/class-mp-wc-ask-question-frontend.php:65
+msgid "Your Email"
+msgstr "Ihre E-Mail"
+
+#: includes/class-mp-wc-ask-question-frontend.php:60
+msgid "Your name"
+msgstr "Ihr Name"
+
+#: includes/class-mp-wc-ask-question-frontend.php:70
+msgid "Your Question"
+msgstr "Ihre Frage"
+
+#: includes/class-mp-wc-ask-question-frontend.php:194
 #: includes/class-mp-wc-ask-question-enqueue.php:24
 msgid "Your question has been sent! You can close the Question Form."
 msgstr "Ihre Frage wurde gesendet! Sie können das Frageformular schließen."

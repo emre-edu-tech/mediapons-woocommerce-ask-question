@@ -20,7 +20,7 @@ class MP_WC_Ask_Question_Frontend {
     // Create the "Ask a Question" Button - Button will be placed in Short Description
     public function custom_ask_question_button() {
         global $product;
-	    echo '<button class="mmp-ask-question-button" data-product-id="' . esc_attr($product->get_id()) . '">' . __('Ask a Question', 'woodmart') . '</button>';
+	    echo '<button class="mmp-ask-question-button" data-product-id="' . esc_attr($product->get_id()) . '">' . __('Ask a Question', 'mp-wc-ask-question') . '</button>';
     }
 
     public function custom_ask_question_modal() {
@@ -44,35 +44,35 @@ class MP_WC_Ask_Question_Frontend {
         ?>
         <div id="mmp-ask-question-modal" class="mmp-ask-question-modal" role="dialog" aria-modal="true" aria-labelled-by="mmp-ask-question-title" aria-hidden="true">
             <div class="mmp-ask-question-content">
-                <button class="mmp-ask-question-close" aria-label="<?php _e('Close', 'woodmart') ?>">&times;</button>
-                <h2 id="mmp-ask-question-title"><?php _e('Ask a Question about Product', 'woodmart') ?></h2>
+                <button class="mmp-ask-question-close" aria-label="<?php _e('Close', 'mp-wc-ask-question') ?>">&times;</button>
+                <h2 id="mmp-ask-question-title"><?php _e('Ask a Question about Product', 'mp-wc-ask-question') ?></h2>
                 <form id="mmp-ask-question-form">
                     <!-- Product ID (hidden, for backend use) -->
                     <input type="hidden" name="mmp_product_id" value="<?php echo esc_attr($product_id) ?>">
 
                     <!-- Product Name (readonly for display) -->
                     <div class="mmp-ask-question-input-group">
-                        <label for="mmp-product-name"><?php _e('Product', 'woodmart') ?></label>
+                        <label for="mmp-product-name"><?php _e('Product', 'mp-wc-ask-question') ?></label>
                         <input type="text" id="mmp-product-name" value="<?php echo esc_attr($product_name) ?>" readonly>
                     </div>
                     
                     <div class="mmp-ask-question-input-group">
-                        <label for="mmp-name"><?php _e('Your name', 'woodmart') ?></label>
+                        <label for="mmp-name"><?php _e('Your name', 'mp-wc-ask-question') ?></label>
                         <input type="text" name="mmp_name" id="mmp-name" required>
                     </div>
 
                     <div class="mmp-ask-question-input-group">
-                        <label for="mmp-email"><?php _e('Your Email', 'woodmart') ?></label>
+                        <label for="mmp-email"><?php _e('Your Email', 'mp-wc-ask-question') ?></label>
                         <input type="email" name="mmp_email" id="mmp-email" required>
                     </div>
 
                     <div class="mmp-ask-question-input-group">
-                        <label for="mmp-message"><?php _e('Your Question', 'woodmart') ?></label>
+                        <label for="mmp-message"><?php _e('Your Question', 'mp-wc-ask-question') ?></label>
                         <textarea name="mmp_message" id="mmp-message" rows="4" required></textarea>
                     </div>
 
                     <button type="submit" class="mmp-ask-question-submit">
-                        <span class="mmp-btn-text"><?php _e('Send Question', 'woodmart') ?></span>
+                        <span class="mmp-btn-text"><?php _e('Send Question', 'mp-wc-ask-question') ?></span>
                         <span class="mmp-btn-spinner" aria-hidden="true"></span>
                     </button>
                     <div class="mmp-ask-question-response" aria-live="polite"></div>
@@ -92,7 +92,7 @@ class MP_WC_Ask_Question_Frontend {
         if(!$name || !$email || !$message || !$product_id) {
             wp_send_json([
                 'success' => false,
-                'message' => __('Please fill all fields', 'woodmart'),
+                'message' => __('Please fill all fields', 'mp-wc-ask-question'),
             ]);
         }
 
@@ -102,7 +102,7 @@ class MP_WC_Ask_Question_Frontend {
         wp_insert_post([
             'post_type' => 'mmp_product_question',
             'post_status' => 'pending',
-            'post_title' => __('Question for ', 'woodmart') . $product->get_name(),
+            'post_title' => __('Question for ', 'mp-wc-ask-question') . $product->get_name(),
             'post_content' => $message,
             'meta_input' => [
                 'mmp_product_id' => $product_id,
@@ -122,26 +122,26 @@ class MP_WC_Ask_Question_Frontend {
         $site_name = get_bloginfo('name');
 
         // Sending email to the admin user
-        $admin_subject = __('Question for ', 'woodmart') . $product->get_name();
+        $admin_subject = __('Question for ', 'mp-wc-ask-question') . $product->get_name();
         $admin_html_message = '
             <html>
                 <body style="font-family: Arial, sans-serif; line-height: 1.5; color: #333;">
-                    <h2 style="color: #0073aa; margin-bottom: 10px;">' . __('New Product Question', 'woodmart') .  '</h2>
+                    <h2 style="color: #0073aa; margin-bottom: 10px;">' . __('New Product Question', 'mp-wc-ask-question') .  '</h2>
                     <table cellpadding="8" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse;">
                         <tr style="background-color: #f5f5f5;">
-                            <td style="width: 150px; font-weight: bold;">' . __('Customer Name:', 'woodmart') . '</td>
+                            <td style="width: 150px; font-weight: bold;">' . __('Customer Name:', 'mp-wc-ask-question') . '</td>
                             <td>' . esc_html($name) . '</td>
                         </tr>
                         <tr>
-                            <td style="font-weight: bold;">' . __('Email', 'woodmart') . '</td>
+                            <td style="font-weight: bold;">' . __('Email', 'mp-wc-ask-question') . '</td>
                             <td><a href="mailto:' . esc_attr($email) . '">' . esc_html($email) . '</a></td>
                         </tr>
                         <tr style="background-color: #f5f5f5;">
-                            <td style="font-weight: bold;">' . __('Product:', 'woodmart') . '</td>
+                            <td style="font-weight: bold;">' . __('Product:', 'mp-wc-ask-question') . '</td>
                             <td>' . esc_html($product->get_name()) . '</td>
                         </tr>
                         <tr>
-                            <td style="font-weight: bold; vertical-align: top;">' . __('Message:', 'woodmart') . '</td>
+                            <td style="font-weight: bold; vertical-align: top;">' . __('Message:', 'mp-wc-ask-question') . '</td>
                             <td>' . nl2br(esc_html($message)) . '</td>
                         </tr>
                     </table>
@@ -153,33 +153,33 @@ class MP_WC_Ask_Question_Frontend {
         wp_mail($admin_email, $admin_subject, $admin_html_message);
 
         // Customer Email
-        $customer_subject = sprintf(__('We received your question about %s', 'woodmart'), $product->get_name());
+        $customer_subject = sprintf(__('We received your question about %s', 'mp-wc-ask-question'), $product->get_name());
         $customer_message = '
             <html>
                 <body style="font-family: Arial, sans-serif; line-height: 1.5; color: #333;">
-                    <h2 style="color: #0073aa; margin-bottom: 10px;">' . sprintf(__( 'Hello from %s', 'woodmart'), $site_name) .  '</h2>
-                    <p>' . sprintf(__('Dear %s', 'woodmart'), $name) . ',</p>
-                    <p>' . __('Thank you for reaching out to us! We have received your question and will get back to you as soon as possible.', 'woodmart') . '</p>
-                    <p><strong>' . __('Here are the details you sent us:', 'woodmart') . '</strong></p>
+                    <h2 style="color: #0073aa; margin-bottom: 10px;">' . sprintf(__( 'Hello from %s', 'mp-wc-ask-question'), $site_name) .  '</h2>
+                    <p>' . sprintf(__('Dear %s', 'mp-wc-ask-question'), $name) . ',</p>
+                    <p>' . __('Thank you for reaching out to us! We have received your question and will get back to you as soon as possible.', 'mp-wc-ask-question') . '</p>
+                    <p><strong>' . __('Here are the details you sent us:', 'mp-wc-ask-question') . '</strong></p>
                     <table cellpadding="8" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse;">
                         <tr style="background-color: #f5f5f5;">
-                            <td style="width: 150px; font-weight: bold;">' . __('Customer Name:', 'woodmart') . '</td>
+                            <td style="width: 150px; font-weight: bold;">' . __('Customer Name:', 'mp-wc-ask-question') . '</td>
                             <td>' . esc_html($name) . '</td>
                         </tr>
                         <tr>
-                            <td style="font-weight: bold;">' . __('Email:', 'woodmart') . '</td>
+                            <td style="font-weight: bold;">' . __('Email:', 'mp-wc-ask-question') . '</td>
                             <td><a href="mailto:' . esc_attr($email) . '">' . esc_html($email) . '</a></td>
                         </tr>
                         <tr style="background-color: #f5f5f5;">
-                            <td style="font-weight: bold;">' . __('Product:', 'woodmart') . '</td>
+                            <td style="font-weight: bold;">' . __('Product:', 'mp-wc-ask-question') . '</td>
                             <td>' . esc_html($product->get_name()) . '</td>
                         </tr>
                         <tr>
-                            <td style="font-weight: bold; vertical-align: top;">' . __('Message:', 'woodmart') . '</td>
+                            <td style="font-weight: bold; vertical-align: top;">' . __('Message:', 'mp-wc-ask-question') . '</td>
                             <td>' . nl2br(esc_html($message)) . '</td>
                         </tr>
                     </table>
-                    <p>' . __('Best regards', 'woodmart') .  ',<br>' . $site_name . '</p>
+                    <p>' . __('Best regards', 'mp-wc-ask-question') .  ',<br>' . $site_name . '</p>
                 </body>
             </html>
         ';
@@ -191,7 +191,7 @@ class MP_WC_Ask_Question_Frontend {
 
         wp_send_json([
             'success' => true,
-            'message' => __('Your question has been sent! You can close the Question Form.', 'woodmart'),
+            'message' => __('Your question has been sent! You can close the Question Form.', 'mp-wc-ask-question'),
         ]);
     }
 }
