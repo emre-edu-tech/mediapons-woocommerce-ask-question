@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MediaPons Woocommerce Ask Question\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-24 09:14+0000\n"
+"POT-Creation-Date: 2025-08-24 09:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -70,7 +70,7 @@ msgstr ""
 msgid "Email:"
 msgstr ""
 
-#: includes/class-mp-wc-ask-question-admin.php:100
+#: includes/class-mp-wc-ask-question-admin.php:101
 msgid "Go to Product Details"
 msgstr ""
 
@@ -86,6 +86,12 @@ msgstr ""
 #. URI of the plugin
 #. Author URI of the plugin
 msgid "https://media-pons.de"
+msgstr ""
+
+#: includes/class-mp-wc-ask-question-admin.php:74
+msgid ""
+"Important Note: Your domain must be added to your Cloudflare Turnstile "
+"widget."
 msgstr ""
 
 #: includes/class-mp-wc-ask-question-admin.php:73
@@ -122,11 +128,11 @@ msgstr ""
 msgid "Product"
 msgstr ""
 
-#: includes/class-mp-wc-ask-question-admin.php:97
+#: includes/class-mp-wc-ask-question-admin.php:98
 msgid "Product Name"
 msgstr ""
 
-#: includes/class-mp-wc-ask-question-admin.php:104
+#: includes/class-mp-wc-ask-question-admin.php:105
 msgid "Product not available"
 msgstr ""
 
@@ -147,7 +153,7 @@ msgstr ""
 msgid "Product:"
 msgstr ""
 
-#: includes/class-mp-wc-ask-question-admin.php:86
+#: includes/class-mp-wc-ask-question-admin.php:87
 msgid "Question Details"
 msgstr ""
 
@@ -161,11 +167,11 @@ msgstr ""
 msgid "Send Question"
 msgstr ""
 
-#: includes/class-mp-wc-ask-question-admin.php:115
+#: includes/class-mp-wc-ask-question-admin.php:116
 msgid "Sender Email"
 msgstr ""
 
-#: includes/class-mp-wc-ask-question-admin.php:109
+#: includes/class-mp-wc-ask-question-admin.php:110
 msgid "Sender Name"
 msgstr ""
 
