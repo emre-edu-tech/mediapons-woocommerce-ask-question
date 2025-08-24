@@ -31,6 +31,8 @@ class MP_WC_Ask_Question_Enqueue {
         // Modal Form Functionality
         if(is_product()) {
             wp_enqueue_script('mmp-modal-script', MP_WC_ASK_QUESTION_PLUGIN_URL . '/assets/js/modal-function.js', [], filemtime(MP_WC_ASK_QUESTION_PLUGIN_PATH . '/assets/js/modal-function.js'), true );
+            // Add the Cloudflare Turnstile JS
+            wp_enqueue_script('cloudflare-turnstile', 'https://challenges.cloudflare.com/turnstile/v0/api.js', [], null, true);
         }
     }
 }

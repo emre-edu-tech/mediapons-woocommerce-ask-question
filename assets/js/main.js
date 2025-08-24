@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalButton = document.querySelector('.mmp-ask-question-button');
     const modal = document.getElementById('mmp-ask-question-modal');
     const questionForm = document.getElementById('mmp-ask-question-form');
-
+    
     if (!modalButton || !modal || !questionForm) {
         return;
     }
@@ -12,10 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = questionForm.querySelector('#mmp-name');
         const email = questionForm.querySelector('#mmp-email');
         const message = questionForm.querySelector('#mmp-message');
-        const product_id = questionForm.querySelector('input[name="mmp_product_id"]');
+        const product_id = questionForm.querySelector('input[name="mp_wc_ask_question_product_id"]');
         const submitBtn = questionForm.querySelector('.mmp-ask-question-submit');
         const submitBtnText = submitBtn.querySelector('.mmp-btn-text');
         const responseDiv = questionForm.querySelector('.mmp-ask-question-response');
+        const turnstileToken = window.turnstile.getResponse();
+        const turnstileWidgetId = questionForm.getAttribute('data-cf-turnstile');
 
         // Reset any previous state
         responseDiv.classList.remove('mmp-error', 'mmp-success');
@@ -38,7 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 name: name.value,
                 email: email.value,
                 message: message.value,
-                product_id: product_id.value
+                product_id: product_id.value,
+                turnstile_response: turnstileToken,
             })
         })
         .then(response => response.json())
@@ -56,10 +59,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
         .catch(() => {
-            submitBtn.classList.remove('loading');
             submitBtnText.textContent = mmpData.send_question;
             responseDiv.classList.add('mmp-error');
             responseDiv.textContent = data.message || mmpData.error_occured;
+        })
+        .finally(() => {
+            submitBtn.classList.remove('loading');
+            // Important to reset the reCAPTCHA since the user can send the form multiple times
+            if(turnstileWidgetId) {
+                window.turnstile.reset(turnstileWidgetId);
+            } else {
+                window.turnstile.reset();
+            }
         });
     })
 });

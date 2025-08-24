@@ -48,7 +48,7 @@ class MP_WC_Ask_Question_Frontend {
                 <h2 id="mmp-ask-question-title"><?php _e('Ask a Question about Product', 'mp-wc-ask-question') ?></h2>
                 <form id="mmp-ask-question-form">
                     <!-- Product ID (hidden, for backend use) -->
-                    <input type="hidden" name="mmp_product_id" value="<?php echo esc_attr($product_id) ?>">
+                    <input type="hidden" name="mp_wc_ask_question_product_id" value="<?php echo esc_attr($product_id) ?>">
 
                     <!-- Product Name (readonly for display) -->
                     <div class="mmp-ask-question-input-group">
@@ -58,17 +58,21 @@ class MP_WC_Ask_Question_Frontend {
                     
                     <div class="mmp-ask-question-input-group">
                         <label for="mmp-name"><?php _e('Your name', 'mp-wc-ask-question') ?></label>
-                        <input type="text" name="mmp_name" id="mmp-name" required>
+                        <input type="text" name="mp_wc_ask_question_user_name" id="mmp-name" required>
                     </div>
 
                     <div class="mmp-ask-question-input-group">
                         <label for="mmp-email"><?php _e('Your Email', 'mp-wc-ask-question') ?></label>
-                        <input type="email" name="mmp_email" id="mmp-email" required>
+                        <input type="email" name="mp_wc_ask_question_user_email" id="mmp-email" required>
                     </div>
 
                     <div class="mmp-ask-question-input-group">
                         <label for="mmp-message"><?php _e('Your Question', 'mp-wc-ask-question') ?></label>
                         <textarea name="mmp_message" id="mmp-message" rows="4" required></textarea>
+                    </div>
+
+                    <div class="mmp-ask-question-turnstile">
+                        <div class="cf-turnstile" data-sitekey=<?php echo esc_attr(get_option('mp_wc_ask_question_turnstile_site_key')) ?>></div>
                     </div>
 
                     <button type="submit" class="mmp-ask-question-submit">
@@ -88,6 +92,7 @@ class MP_WC_Ask_Question_Frontend {
         $email = sanitize_email($_POST['email'] ?? '');
         $message = sanitize_textarea_field( $_POST['message'] ?? '');
         $product_id = absint($_POST['product_id'] ?? 0);
+        $turnstile_response = sanitize_text_field($_POST['turnstile_response']);
 
         if(!$name || !$email || !$message || !$product_id) {
             wp_send_json([
@@ -96,18 +101,46 @@ class MP_WC_Ask_Question_Frontend {
             ]);
         }
 
+        $secret_key = get_option('mp_wc_ask_question_turnstile_secret_key');
+        if(!$secret_key) {
+            wp_send_json([
+                'success' => false,
+                'message' => __('Turnstile configuration is wrong', 'mp-wc-ask-question'),
+            ]);
+        }
+
+        // First verify the Turnstile response from Cloudflare
+        $verify_json_response = wp_remote_post(
+            'https://challenges.cloudflare.com/turnstile/v0/siteverify',[
+                'body' => [
+                    'secret' => $secret_key,
+                    'response' => $turnstile_response,
+                    'remoteip' => $_SERVER['REMOTE_ADDR'],
+                ]
+            ]
+        );
+
+        $verification_arr = json_decode(wp_remote_retrieve_body($verify_json_response), true);
+
+        if(empty($verification_arr['success']) || $verification_arr['success'] !== true) {
+            wp_send_json([
+                'success' => false,
+                'message' => __('Verification failed. Try again', 'mp-wc-ask-question'),
+            ]);
+        }
+
         $product = wc_get_product($product_id);
 
-        // Save the details to DB
+        // Save question post to DB
         wp_insert_post([
-            'post_type' => 'mmp_product_question',
+            'post_type' => 'mp_wc_prod_question',
             'post_status' => 'pending',
             'post_title' => __('Question for ', 'mp-wc-ask-question') . $product->get_name(),
             'post_content' => $message,
             'meta_input' => [
-                'mmp_product_id' => $product_id,
-                'mmp_user_email' => $email,
-                'mmp_user_name' => $name,
+                'mp_wc_ask_question_product_id' => $product_id,
+                'mp_wc_ask_question_user_email' => $email,
+                'mp_wc_ask_question_user_name' => $name,
             ]
         ]);
 

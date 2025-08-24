@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: MediaPons Woocommerce Ask Question\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-21 09:47+0000\n"
-"PO-Revision-Date: 2025-08-22 07:24+0000\n"
+"PO-Revision-Date: 2025-08-22 10:01+0000\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -39,6 +39,10 @@ msgstr "Mit freundlichen Grüßen"
 msgid "Close"
 msgstr "Schließen"
 
+#: includes/class-mp-wc-ask-question-admin.php:24
+msgid "Cloudflare Turnstile Settings"
+msgstr ""
+
 #. Description of the plugin
 msgid "Custom Woocommerce Ask Question Form for Product"
 msgstr "Individuelles WooCommerce-Formular für Produktanfragen"
@@ -65,7 +69,7 @@ msgstr "E-Mail"
 msgid "Email:"
 msgstr "E-Mail:"
 
-#: includes/class-mp-wc-ask-question-admin.php:29
+#: includes/class-mp-wc-ask-question-admin.php:97
 msgid "Go to Product Details"
 msgstr "Zu den Produktdetails"
 
@@ -109,17 +113,21 @@ msgstr "Bitte alle Felder ausfüllen"
 msgid "Product"
 msgstr "Produkt"
 
-#: includes/class-mp-wc-ask-question-admin.php:26
+#: includes/class-mp-wc-ask-question-admin.php:94
 msgid "Product Name"
 msgstr "Produktname"
 
-#: includes/class-mp-wc-ask-question-admin.php:33
+#: includes/class-mp-wc-ask-question-admin.php:101
 msgid "Product not available"
 msgstr "Produkt nicht verfügbar"
 
 #: includes/class-mp-wc-ask-question-cpt.php:18
 msgid "Product Question"
 msgstr "Produktfrage"
+
+#: includes/class-mp-wc-ask-question-admin.php:61
+msgid "Product Question Settings"
+msgstr ""
 
 #: includes/class-mp-wc-ask-question-cpt.php:17
 msgid "Product Questions"
@@ -130,7 +138,7 @@ msgstr "Fragen zum Produkt"
 msgid "Product:"
 msgstr "Produkt:"
 
-#: includes/class-mp-wc-ask-question-admin.php:15
+#: includes/class-mp-wc-ask-question-admin.php:83
 msgid "Question Details"
 msgstr "Details zur Frage"
 
@@ -144,17 +152,21 @@ msgstr "Frage zu "
 msgid "Send Question"
 msgstr "Frage senden"
 
-#: includes/class-mp-wc-ask-question-admin.php:44
+#: includes/class-mp-wc-ask-question-admin.php:112
 msgid "Sender Email"
 msgstr "Absender-E-Mail"
 
-#: includes/class-mp-wc-ask-question-admin.php:38
+#: includes/class-mp-wc-ask-question-admin.php:106
 msgid "Sender Name"
 msgstr "Absendername"
 
 #: includes/class-mp-wc-ask-question-enqueue.php:22
 msgid "Sending..."
 msgstr "Wird gesendet…"
+
+#: includes/class-mp-wc-ask-question-admin.php:62
+msgid "Settings"
+msgstr ""
 
 #: includes/class-mp-wc-ask-question-frontend.php:162
 msgid ""
@@ -163,6 +175,14 @@ msgid ""
 msgstr ""
 "Vielen Dank für Ihre Nachricht! Wir haben Ihre Frage erhalten und melden uns "
 "schnellstmöglich bei Ihnen."
+
+#: includes/class-mp-wc-ask-question-admin.php:41
+msgid "Turnstile Secret Key"
+msgstr ""
+
+#: includes/class-mp-wc-ask-question-admin.php:32
+msgid "Turnstile Site Key"
+msgstr ""
 
 #: includes/class-mp-wc-ask-question-frontend.php:156
 #, php-format

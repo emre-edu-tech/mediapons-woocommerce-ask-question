@@ -17,7 +17,7 @@ if(!defined('ABSPATH')) {
 }
 
 // Plugin Constants
-define('MP_WC_ASK_QUESTION_PLUGIN_VERSION', '1.0.0.');
+define('MP_WC_ASK_QUESTION_PLUGIN_VERSION', '1.0.0');
 define('MP_WC_ASK_QUESTION_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('MP_WC_ASK_QUESTION_PLUGIN_URL', plugin_dir_url(__FILE__));
 

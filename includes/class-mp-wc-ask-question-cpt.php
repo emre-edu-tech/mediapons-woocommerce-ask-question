@@ -11,7 +11,7 @@ class MP_WC_Ask_Question_CPT {
         add_action('init', [$this, 'register_cpt']);
     }
 
-    // Create Custom Post Type called 'mmp_product_question'
+    // Create Custom Post Type called 'mp_wc_prod_question'
     public function register_cpt() {
         $labels = [
             'name' => __('Product Questions', 'mp-wc-ask-question'),
@@ -24,10 +24,11 @@ class MP_WC_Ask_Question_CPT {
             'labels' => $labels,
             'public' => false,
             'show_ui' => true,
+            'menu_position' => 30,
             'menu_icon' => 'dashicons-format-chat',
             'supports' => ['title', 'editor']
         ];
 
-	    register_post_type('mmp_product_question', $args);
+	    register_post_type('mp_wc_prod_question', $args);
     }
 }
