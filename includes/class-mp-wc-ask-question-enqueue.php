@@ -28,11 +28,17 @@ class MP_WC_Ask_Question_Enqueue {
 
         wp_enqueue_style( 'mmp-custom-style', MP_WC_ASK_QUESTION_PLUGIN_URL . '/assets/css/main.css', [], MP_WC_ASK_QUESTION_PLUGIN_PATH . '/assets/css/main.css');
 
-        // Modal Form Functionality
+        // Modal Form Functionality works on Single Product Page
         if(is_product()) {
             wp_enqueue_script('mmp-modal-script', MP_WC_ASK_QUESTION_PLUGIN_URL . '/assets/js/modal-function.js', [], filemtime(MP_WC_ASK_QUESTION_PLUGIN_PATH . '/assets/js/modal-function.js'), true );
-            // Add the Cloudflare Turnstile JS
-            wp_enqueue_script('cloudflare-turnstile', 'https://challenges.cloudflare.com/turnstile/v0/api.js', [], null, true);
+
+            // Add the Cloudflare Turnstile JS if it is enabled in WordPress admin panel
+            $turnstile_site_key = get_option('mp_wc_ask_question_turnstile_site_key');
+            $turnstile_secret_key = get_option('mp_wc_ask_question_turnstile_secret_key');
+            $turnstile_enabled = (!empty($turnstile_site_key) && !empty($turnstile_secret_key));
+            if($turnstile_enabled) {
+                wp_enqueue_script('cloudflare-turnstile', 'https://challenges.cloudflare.com/turnstile/v0/api.js', [], null, true);    
+            }
         }
     }
 }

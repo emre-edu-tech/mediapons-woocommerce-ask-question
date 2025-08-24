@@ -1,6 +1,6 @@
 <?php
 /*
-    Plugin Name: MediaPons Woocommerce Ask Question
+    Plugin Name: MP Woocommerce Ask Question
     Plugin URI: https://media-pons.de
     Description: Custom Woocommerce Ask Question Form for Product
     Version: 1.0.0

@@ -41,6 +41,10 @@ class MP_WC_Ask_Question_Frontend {
 
         $product_id = $product->get_id();
         $product_name = $product->get_name();
+        // Cloudflare Turnstile Settings
+        $turnstile_site_key = get_option('mp_wc_ask_question_turnstile_site_key');
+        $turnstile_secret_key = get_option('mp_wc_ask_question_turnstile_secret_key');
+        $turnstile_enabled = (!empty($turnstile_site_key) && !empty($turnstile_secret_key));
         ?>
         <div id="mmp-ask-question-modal" class="mmp-ask-question-modal" role="dialog" aria-modal="true" aria-labelled-by="mmp-ask-question-title" aria-hidden="true">
             <div class="mmp-ask-question-content">
@@ -70,10 +74,11 @@ class MP_WC_Ask_Question_Frontend {
                         <label for="mmp-message"><?php _e('Your Question', 'mp-wc-ask-question') ?></label>
                         <textarea name="mmp_message" id="mmp-message" rows="4" required></textarea>
                     </div>
-
-                    <div class="mmp-ask-question-turnstile">
-                        <div class="cf-turnstile" data-sitekey=<?php echo esc_attr(get_option('mp_wc_ask_question_turnstile_site_key')) ?>></div>
-                    </div>
+                    <?php if($turnstile_enabled): ?>
+                        <div class="mmp-ask-question-turnstile">
+                            <div class="cf-turnstile" data-sitekey=<?php echo esc_attr(get_option('mp_wc_ask_question_turnstile_site_key')) ?>></div>
+                        </div>
+                    <?php endif; ?>
 
                     <button type="submit" class="mmp-ask-question-submit">
                         <span class="mmp-btn-text"><?php _e('Send Question', 'mp-wc-ask-question') ?></span>
@@ -92,7 +97,10 @@ class MP_WC_Ask_Question_Frontend {
         $email = sanitize_email($_POST['email'] ?? '');
         $message = sanitize_textarea_field( $_POST['message'] ?? '');
         $product_id = absint($_POST['product_id'] ?? 0);
-        $turnstile_response = sanitize_text_field($_POST['turnstile_response']);
+        // Cloudflare Turnstile Settings
+        $turnstile_site_key = get_option('mp_wc_ask_question_turnstile_site_key');
+        $turnstile_secret_key = get_option('mp_wc_ask_question_turnstile_secret_key');
+        $turnstile_enabled = (!empty($turnstile_site_key) && !empty($turnstile_secret_key));
 
         if(!$name || !$email || !$message || !$product_id) {
             wp_send_json([
@@ -101,32 +109,35 @@ class MP_WC_Ask_Question_Frontend {
             ]);
         }
 
-        $secret_key = get_option('mp_wc_ask_question_turnstile_secret_key');
-        if(!$secret_key) {
-            wp_send_json([
-                'success' => false,
-                'message' => __('Turnstile configuration is wrong', 'mp-wc-ask-question'),
-            ]);
-        }
+        if($turnstile_enabled) {
+            $turnstile_response = sanitize_text_field($_POST['turnstile_response']);
+            $secret_key = get_option('mp_wc_ask_question_turnstile_secret_key');
+            if(!$secret_key) {
+                wp_send_json([
+                    'success' => false,
+                    'message' => __('Turnstile configuration is wrong', 'mp-wc-ask-question'),
+                ]);
+            }
 
-        // First verify the Turnstile response from Cloudflare
-        $verify_json_response = wp_remote_post(
-            'https://challenges.cloudflare.com/turnstile/v0/siteverify',[
-                'body' => [
-                    'secret' => $secret_key,
-                    'response' => $turnstile_response,
-                    'remoteip' => $_SERVER['REMOTE_ADDR'],
+            // First verify the Turnstile response from Cloudflare
+            $verify_json_response = wp_remote_post(
+                'https://challenges.cloudflare.com/turnstile/v0/siteverify',[
+                    'body' => [
+                        'secret' => $secret_key,
+                        'response' => $turnstile_response,
+                        'remoteip' => $_SERVER['REMOTE_ADDR'],
+                    ]
                 ]
-            ]
-        );
+            );
 
-        $verification_arr = json_decode(wp_remote_retrieve_body($verify_json_response), true);
+            $verification_arr = json_decode(wp_remote_retrieve_body($verify_json_response), true);
 
-        if(empty($verification_arr['success']) || $verification_arr['success'] !== true) {
-            wp_send_json([
-                'success' => false,
-                'message' => __('Verification failed. Try again', 'mp-wc-ask-question'),
-            ]);
+            if(empty($verification_arr['success']) || $verification_arr['success'] !== true) {
+                wp_send_json([
+                    'success' => false,
+                    'message' => __('Verification failed. Try again', 'mp-wc-ask-question'),
+                ]);
+            }
         }
 
         $product = wc_get_product($product_id);

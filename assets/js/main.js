@@ -16,8 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const submitBtn = questionForm.querySelector('.mmp-ask-question-submit');
         const submitBtnText = submitBtn.querySelector('.mmp-btn-text');
         const responseDiv = questionForm.querySelector('.mmp-ask-question-response');
-        const turnstileToken = window.turnstile.getResponse();
-        const turnstileWidgetId = questionForm.getAttribute('data-cf-turnstile');
+        // sanity check for Cloudflare Turnstile
+        let turnstileToken, turnstileWidgetId = null;
+        if(window.turnstile) {
+            turnstileToken = window.turnstile.getResponse();
+            turnstileWidgetId = questionForm.getAttribute('data-cf-turnstile');   
+        }
 
         // Reset any previous state
         responseDiv.classList.remove('mmp-error', 'mmp-success');
@@ -66,10 +70,12 @@ document.addEventListener('DOMContentLoaded', () => {
         .finally(() => {
             submitBtn.classList.remove('loading');
             // Important to reset the reCAPTCHA since the user can send the form multiple times
-            if(turnstileWidgetId) {
-                window.turnstile.reset(turnstileWidgetId);
-            } else {
-                window.turnstile.reset();
+            if(window.turnstile) {
+                if(turnstileWidgetId) {
+                    window.turnstile.reset(turnstileWidgetId);
+                } else {
+                    window.turnstile.reset();
+                }   
             }
         });
     })

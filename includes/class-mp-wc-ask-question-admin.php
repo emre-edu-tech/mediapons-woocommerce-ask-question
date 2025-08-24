@@ -69,7 +69,8 @@ class MP_WC_Ask_Question_Admin {
     public function render_settings_page() {
         ?>
         <div class="wrap">
-            <h1>MP WC Product Question Settings</h1>
+            <h1><?php _e('MP WC Product Question Settings', 'mp-wc-ask-question') ?></h1>
+            <p><?php _e('Leave blank to disable Cloudflare Turnstile verification.', 'mp-wc-ask-question') ?></p>
             <form action="options.php" method="post">
                 <?php
                 settings_fields('mp_wc_ask_question_settings_group');
