@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: MediaPons Woocommerce Ask Question\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-21 09:47+0000\n"
-"PO-Revision-Date: 2025-08-24 09:30+0000\n"
+"PO-Revision-Date: 2025-08-24 13:57+0000\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -39,7 +39,7 @@ msgstr "Mit freundlichen Grüßen"
 msgid "Close"
 msgstr "Schließen"
 
-#: includes/class-mp-wc-ask-question-admin.php:24
+#: includes/class-mp-wc-ask-question-admin.php:30
 msgid "Cloudflare Turnstile Settings"
 msgstr "Cloudflare Turnstile-Einstellungen"
 
@@ -69,7 +69,7 @@ msgstr "E-Mail"
 msgid "Email:"
 msgstr "E-Mail:"
 
-#: includes/class-mp-wc-ask-question-admin.php:101
+#: includes/class-mp-wc-ask-question-admin.php:122
 msgid "Go to Product Details"
 msgstr "Zu den Produktdetails"
 
@@ -87,7 +87,7 @@ msgstr "Hier sind die Angaben, die Sie uns übermittelt haben:"
 msgid "https://media-pons.de"
 msgstr ""
 
-#: includes/class-mp-wc-ask-question-admin.php:74
+#: includes/class-mp-wc-ask-question-admin.php:95
 msgid ""
 "Important Note: Your domain must be added to your Cloudflare Turnstile "
 "widget."
@@ -95,9 +95,14 @@ msgstr ""
 "Wichtiger Hinweis: Ihre Domain muss Ihrem Cloudflare Turnstile-Widget "
 "hinzugefügt werden."
 
-#: includes/class-mp-wc-ask-question-admin.php:73
+#: includes/class-mp-wc-ask-question-admin.php:94
 msgid "Leave blank to disable Cloudflare Turnstile verification."
 msgstr "Leer lassen, um die Cloudflare Turnstile-Überprüfung zu deaktivieren."
+
+#: includes/class-mp-wc-ask-question-admin.php:66
+msgid "Leave blank to use the default WordPress admin email."
+msgstr ""
+"Leer lassen, um die standardmäßige WordPress-Admin-E-Mail zu verwenden."
 
 #. Author of the plugin
 msgid "Media Pons"
@@ -108,7 +113,7 @@ msgstr ""
 msgid "Message:"
 msgstr "Nachricht:"
 
-#: includes/class-mp-wc-ask-question-admin.php:72
+#: includes/class-mp-wc-ask-question-admin.php:93
 msgid "MP WC Product Question Settings"
 msgstr "MP WC Produktfragen-Einstellungen"
 
@@ -120,6 +125,10 @@ msgstr "MP WooCommerce Frage stellen"
 msgid "New Product Question"
 msgstr "Neue Produktfrage"
 
+#: includes/class-mp-wc-ask-question-admin.php:56
+msgid "Other E-mail Address for Questions to be sent"
+msgstr "Andere E-Mail-Adresse, an die Fragen gesendet werden"
+
 #: includes/class-mp-wc-ask-question-frontend.php:108
 #: includes/class-mp-wc-ask-question-enqueue.php:25
 msgid "Please fill all fields"
@@ -129,11 +138,11 @@ msgstr "Bitte alle Felder ausfüllen"
 msgid "Product"
 msgstr "Produkt"
 
-#: includes/class-mp-wc-ask-question-admin.php:98
+#: includes/class-mp-wc-ask-question-admin.php:119
 msgid "Product Name"
 msgstr "Produktname"
 
-#: includes/class-mp-wc-ask-question-admin.php:105
+#: includes/class-mp-wc-ask-question-admin.php:126
 msgid "Product not available"
 msgstr "Produkt nicht verfügbar"
 
@@ -141,7 +150,7 @@ msgstr "Produkt nicht verfügbar"
 msgid "Product Question"
 msgstr "Produktfrage"
 
-#: includes/class-mp-wc-ask-question-admin.php:61
+#: includes/class-mp-wc-ask-question-admin.php:82
 msgid "Product Question Settings"
 msgstr "Produktfagen-Einstellungen"
 
@@ -154,7 +163,7 @@ msgstr "Fragen zum Produkt"
 msgid "Product:"
 msgstr "Produkt:"
 
-#: includes/class-mp-wc-ask-question-admin.php:87
+#: includes/class-mp-wc-ask-question-admin.php:108
 msgid "Question Details"
 msgstr "Details zur Frage"
 
@@ -168,11 +177,11 @@ msgstr "Frage zu "
 msgid "Send Question"
 msgstr "Frage senden"
 
-#: includes/class-mp-wc-ask-question-admin.php:116
+#: includes/class-mp-wc-ask-question-admin.php:137
 msgid "Sender Email"
 msgstr "Absender-E-Mail"
 
-#: includes/class-mp-wc-ask-question-admin.php:110
+#: includes/class-mp-wc-ask-question-admin.php:131
 msgid "Sender Name"
 msgstr "Absendername"
 
@@ -180,7 +189,7 @@ msgstr "Absendername"
 msgid "Sending..."
 msgstr "Wird gesendet…"
 
-#: includes/class-mp-wc-ask-question-admin.php:62
+#: includes/class-mp-wc-ask-question-admin.php:83
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -196,11 +205,11 @@ msgstr ""
 msgid "Turnstile configuration is wrong"
 msgstr "Turnstile-Konfiguration ist fehlerhaft"
 
-#: includes/class-mp-wc-ask-question-admin.php:41
+#: includes/class-mp-wc-ask-question-admin.php:47
 msgid "Turnstile Secret Key"
 msgstr "Turnstile-Geheimschlüssel"
 
-#: includes/class-mp-wc-ask-question-admin.php:32
+#: includes/class-mp-wc-ask-question-admin.php:38
 msgid "Turnstile Site Key"
 msgstr "Turnstile-Site-Schlüssel"
 
@@ -212,6 +221,10 @@ msgstr "Überprüfung fehlgeschlagen. Bitte erneut versuchen."
 #, php-format
 msgid "We received your question about %s"
 msgstr "Ihre Frage zu %s ist bei uns eingegangen"
+
+#: includes/class-mp-wc-ask-question-frontend.php:215
+msgid "You can use this e-mail to contact this customer"
+msgstr "Sie können diese E-Mail verwenden, um diesen Kunden zu kontaktieren"
 
 #: includes/class-mp-wc-ask-question-frontend.php:69
 msgid "Your Email"

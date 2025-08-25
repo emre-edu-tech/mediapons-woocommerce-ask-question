@@ -156,7 +156,7 @@ class MP_WC_Ask_Question_Frontend {
         ]);
 
         // Send email to admin or selected user (from admin panel)
-        $admin_email = get_option('mmp_ask_question_email') ?: get_option('admin_email');
+        $admin_email = get_option('mp_wc_ask_question_email') ?: get_option('admin_email');
 
         // Before sending e-mail, change the email content type to html temporarily
         add_filter( 'wp_mail_content_type', function() {
@@ -212,7 +212,7 @@ class MP_WC_Ask_Question_Frontend {
                         </tr>
                         <tr>
                             <td style="font-weight: bold;">' . __('Email:', 'mp-wc-ask-question') . '</td>
-                            <td><a href="mailto:' . esc_attr($email) . '">' . esc_html($email) . '</a></td>
+                            <td><a href="mailto:' . esc_attr($email) . '">' . esc_html($email) . '</a>' . __('You can use this e-mail to contact this customer', 'mp-wc-ask-question') . '</td>
                         </tr>
                         <tr style="background-color: #f5f5f5;">
                             <td style="font-weight: bold;">' . __('Product:', 'mp-wc-ask-question') . '</td>

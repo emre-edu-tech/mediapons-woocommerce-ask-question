@@ -19,6 +19,12 @@ class MP_WC_Ask_Question_Admin {
 
         register_setting('mp_wc_ask_question_settings_group', 'mp_wc_ask_question_turnstile_secret_key');
 
+        register_setting('mp_wc_ask_question_settings_group', 'mp_wc_ask_question_email', [
+            'type' => 'string',
+            'sanitize_callback' => 'sanitize_email',
+            'default' => '',
+        ]);
+
         add_settings_section(
             'mp_wc_ask_question_settings_section',
             __('Cloudflare Turnstile Settings', 'mp-wc-ask-question'),
@@ -43,6 +49,21 @@ class MP_WC_Ask_Question_Admin {
             'mp-wc-ask-question-settings',
             'mp_wc_ask_question_settings_section'
         );
+
+        // Custom e-mail to send the question
+        add_settings_field(
+            'mp_wc_ask_question_email',
+            __('Other E-mail Address for Questions to be sent', 'mp-wc-ask-question'),
+            [$this, 'render_email_field'],
+            'mp-wc-ask-question-settings',
+            'mp_wc_ask_question_settings_section'
+        );
+    }
+
+    public function render_email_field() {
+        $value = get_option('mp_wc_ask_question_email');
+        echo '<input type="email" name="mp_wc_ask_question_email" value="' . esc_attr($value) . '" class="regular-text" />';
+        echo '<p class="description">' . __('Leave blank to use the default WordPress admin email.', 'mp-wc-ask-question') . '</p>';
     }
 
     public function render_turnstile_site_key_field() {
