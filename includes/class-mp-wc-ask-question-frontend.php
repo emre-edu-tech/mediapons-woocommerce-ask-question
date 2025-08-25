@@ -178,7 +178,7 @@ class MP_WC_Ask_Question_Frontend {
                         </tr>
                         <tr>
                             <td style="font-weight: bold;">' . __('Email', 'mp-wc-ask-question') . '</td>
-                            <td><a href="mailto:' . esc_attr($email) . '">' . esc_html($email) . '</a></td>
+                            <td><a href="mailto:' . esc_attr($email) . '">' . esc_html($email) . '</a> (' . __('You can use this e-mail to contact this customer', 'mp-wc-ask-question') . ')</td>
                         </tr>
                         <tr style="background-color: #f5f5f5;">
                             <td style="font-weight: bold;">' . __('Product:', 'mp-wc-ask-question') . '</td>
@@ -212,7 +212,7 @@ class MP_WC_Ask_Question_Frontend {
                         </tr>
                         <tr>
                             <td style="font-weight: bold;">' . __('Email:', 'mp-wc-ask-question') . '</td>
-                            <td><a href="mailto:' . esc_attr($email) . '">' . esc_html($email) . '</a>' . __('You can use this e-mail to contact this customer', 'mp-wc-ask-question') . '</td>
+                            <td><a href="mailto:' . esc_attr($email) . '">' . esc_html($email) . '</a></td>
                         </tr>
                         <tr style="background-color: #f5f5f5;">
                             <td style="font-weight: bold;">' . __('Product:', 'mp-wc-ask-question') . '</td>
