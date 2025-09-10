@@ -32,7 +32,16 @@ class MP_WC_Ask_Question_Admin {
             'mp-wc-ask-question-settings',
         );
 
-        // Turnstile Site Key
+        // Custom e-mail to send Product Question
+        add_settings_field(
+            'mp_wc_ask_question_email',
+            __('Other E-mail Address for sending Questions', 'mp-wc-ask-question'),
+            [$this, 'render_email_field'],
+            'mp-wc-ask-question-settings',
+            'mp_wc_ask_question_settings_section'
+        );
+
+        // Turnstile Site Key for Cloudflare Turnstile
         add_settings_field(
             'mp_wc_ask_question_turnstile_site_key',
             __('Turnstile Site Key', 'mp-wc-ask-question'),
@@ -41,7 +50,7 @@ class MP_WC_Ask_Question_Admin {
             'mp_wc_ask_question_settings_section'
         );
 
-        // Turnstile Secret Key
+        // Turnstile Secret Key for Cloudflare Turnstile
         add_settings_field(
             'mp_wc_ask_question_turnstile_secret_key',
             __('Turnstile Secret Key', 'mp-wc-ask-question'),
@@ -49,31 +58,27 @@ class MP_WC_Ask_Question_Admin {
             'mp-wc-ask-question-settings',
             'mp_wc_ask_question_settings_section'
         );
-
-        // Custom e-mail to send the question
-        add_settings_field(
-            'mp_wc_ask_question_email',
-            __('Other E-mail Address for Questions to be sent', 'mp-wc-ask-question'),
-            [$this, 'render_email_field'],
-            'mp-wc-ask-question-settings',
-            'mp_wc_ask_question_settings_section'
-        );
     }
 
-    public function render_email_field() {
+    public function render_email_field($args) {
         $value = get_option('mp_wc_ask_question_email');
-        echo '<input type="email" name="mp_wc_ask_question_email" value="' . esc_attr($value) . '" class="regular-text" />';
+        $placeholder = get_option('admin_email');
+
+        echo '<input id="' . esc_attr($args['label_for']) . '" type="email" name="mp_wc_ask_question_email" value="' . esc_attr($value) . '" placeholder="' . esc_attr($placeholder) . '" class="regular-text" />';
+
         echo '<p class="description">' . __('Leave blank to use the default WordPress admin email.', 'mp-wc-ask-question') . '</p>';
     }
 
     public function render_turnstile_site_key_field() {
         $value = get_option('mp_wc_ask_question_turnstile_site_key');
         echo '<input type="text" name="mp_wc_ask_question_turnstile_site_key" value="' . esc_attr($value) . '" class="regular-text" />';
+        echo '<p class="description">' . __('Site key will be retrieved after adding your domain to Cloudflare Turnstile widget.', 'mp-wc-ask-question') . '</p>';
     }
 
     public function render_turnstile_secret_key_field() {
         $value = get_option('mp_wc_ask_question_turnstile_secret_key');
         echo '<input type="text" name="mp_wc_ask_question_turnstile_secret_key" value="' . esc_attr($value) . '" class="regular-text" />';
+        echo '<p class="description">' . __('Secret key will be retrieved after adding your domain to Cloudflare Turnstile widget.', 'mp-wc-ask-question') . '</p>';
     }
 
     public function add_admin_settings_submenu() {
@@ -95,8 +100,8 @@ class MP_WC_Ask_Question_Admin {
             <p><strong><?php _e('Important Note: Your domain must be added to your Cloudflare Turnstile widget.', 'mp-wc-ask-question') ?></strong></p>
             <form action="options.php" method="post">
                 <?php
-                settings_fields('mp_wc_ask_question_settings_group');
-                do_settings_sections('mp-wc-ask-question-settings');
+                settings_fields('mp_wc_ask_question_settings_group');   // matches register_setting group
+                do_settings_sections('mp-wc-ask-question-settings');    // matches add_settings_section page
                 submit_button();
                 ?>
             </form>
@@ -105,7 +110,11 @@ class MP_WC_Ask_Question_Admin {
     }
 
     public function register_meta_boxes() {
+        // Add Question Details Meta Box
         add_meta_box('mp_wc_ask_question_meta_box', __('Question Details', 'mp-wc-ask-question'), [$this, 'render_product_question_meta_box'], '', 'normal', 'default');
+
+        // Add Answers to Question Meta Box
+        add_meta_box('mp_wc_ask_question_answers_meta_box', __('Answers to this Question', 'mp-wc-ask-question'), [$this, 'render_question_answers_meta_box'], 'mp_wc_prod_question', 'normal', 'default');
     }
 
     public function render_product_question_meta_box($post) {
@@ -141,5 +150,13 @@ class MP_WC_Ask_Question_Admin {
             </tr>
         </table>
         <?php
+    }
+
+    public function render_question_answers_meta_box($post) {
+        $user_email = get_post_meta($post->ID, 'mp_wc_ask_question_user_email', true);
+        $user_name = get_post_meta($post->ID, 'mp_wc_ask_question_user_name', true);
+
+        // Fetch existing answers (comments) to this question using comment_type key
+
     }
 }

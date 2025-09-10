@@ -8,6 +8,7 @@ if (!defined('ABSPATH')) {
 
 class MP_WC_Ask_Question_CPT {
     public function __construct() {
+        // Register Custom Post Types
         add_action('init', [$this, 'register_cpt']);
     }
 

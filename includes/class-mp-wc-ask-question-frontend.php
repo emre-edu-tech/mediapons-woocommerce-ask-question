@@ -95,7 +95,7 @@ class MP_WC_Ask_Question_Frontend {
         // Parse ajax request
         $name = sanitize_text_field($_POST['name'] ?? '');
         $email = sanitize_email($_POST['email'] ?? '');
-        $message = sanitize_textarea_field( $_POST['message'] ?? '');
+        $message = sanitize_textarea_field($_POST['message'] ?? '');
         $product_id = absint($_POST['product_id'] ?? 0);
         // Cloudflare Turnstile Settings
         $turnstile_site_key = get_option('mp_wc_ask_question_turnstile_site_key');

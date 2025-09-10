@@ -36,11 +36,13 @@
 .mmp-ask-question-modal .mmp-ask-question-close {
     position: absolute;
     top: .5rem;
-    right: .5rem;
+    right: .8rem;
     background: transparent;
     border: none;
     font-size: 2rem;
     cursor: pointer;
+    color: #000;
+    padding: 0;
 }
 
 .mmp-ask-question-modal .mmp-ask-question-close:hover {
