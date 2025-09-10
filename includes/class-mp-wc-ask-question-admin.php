@@ -64,7 +64,7 @@ class MP_WC_Ask_Question_Admin {
         $value = get_option('mp_wc_ask_question_email');
         $placeholder = get_option('admin_email');
 
-        echo '<input id="' . esc_attr($args['label_for']) . '" type="email" name="mp_wc_ask_question_email" value="' . esc_attr($value) . '" placeholder="' . esc_attr($placeholder) . '" class="regular-text" />';
+        echo '<input type="email" name="mp_wc_ask_question_email" value="' . esc_attr($value) . '" placeholder="' . esc_attr($placeholder) . '" class="regular-text" />';
 
         echo '<p class="description">' . __('Leave blank to use the default WordPress admin email.', 'mp-wc-ask-question') . '</p>';
     }
